@@ -15,13 +15,12 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-    #When I go to the edit page for "Alien"
     when /^the edit\s?page for (.*)$/
       begin
         m=Movie.find_by_title($1.tr('"',''))
         s_id=m.id.to_s
-      '/movies/'+s_id+'/edit'
-      p s_id
+        '/movies/'+s_id+'/edit'
+        #p s_id
       end
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -30,14 +29,14 @@ module NavigationHelpers
     #     user_profile_path(User.find_by_login($1))
 
     else
-      begin
-        page_name =~ /^the (.*) page$/
-        path_components = $1.split(/\s+/)
-        self.send(path_components.push('path').join('_').to_sym)
-      rescue NoMethodError, ArgumentError
-        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
-          "Now, go and add a mapping in #{__FILE__}"
-      end
+    begin
+    page_name =~ /^the (.*) page$/
+    path_components = $1.split(/\s+/)
+    self.send(path_components.push('path').join('_').to_sym)
+    rescue NoMethodError, ArgumentError
+    raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
+    "Now, go and add a mapping in #{__FILE__}"
+    end
     end
   end
 end

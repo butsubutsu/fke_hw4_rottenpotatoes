@@ -14,7 +14,8 @@ Background: movies in database
   | THX-1138     | R      | George Lucas |   1971-03-11 |
 
 Scenario: add director to existing movie
-  When I go to the edit page for "Alien"
+  #When I go to the edit page for "Alien"
+  Given I am on the edit page for "Alien"
   And  I fill in "Director" with "Ridley Scott"
   And  I press "Update Movie Info"
   Then the director of "Alien" should be "Ridley Scott"
