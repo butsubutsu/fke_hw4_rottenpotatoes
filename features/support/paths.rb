@@ -14,13 +14,26 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+      '/movies'
     when /^the edit\s?page for (.*)$/
       begin
         m=Movie.find_by_title($1.tr('"',''))
         s_id=m.id.to_s
         '/movies/'+s_id+'/edit'
-        #p s_id
+      #p s_id
+      end
+      #the Similar Movies page for "Star Wars
+    when /^the details\s?page for (.*)$/
+      begin
+        m=Movie.find_by_title($1.tr('"',''))
+        s_id=m.id.to_s
+        '/movies/'+s_id+''
+      end
+    when /^the (s|S)imilar (m|M)ovies\s?page for (.*)$/
+      begin
+        m=Movie.find_by_title($3.tr('"',''))
+        s_id=m.id.to_s
+        '/movies/'+s_id+'/same_director'
       end
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

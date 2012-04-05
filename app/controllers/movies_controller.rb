@@ -60,6 +60,15 @@ class MoviesController < ApplicationController
   
   def same_director
     #AS2012/04/05: rspec fails if .to_i is omitted..   
-    @movies= Movie.same_director(params[:id].to_i)
+    @movies= Movie.same_director(params[:id].to_i)||[]
+    #p @movies.length
+    if (@movies.length < 2)
+     # p'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+     #'Alien' has no director info
+     movie_name=@movies[0].title
+      flash[:notice] = "'#{movie_name}' has no director info"
+      redirect_to movies_path  and return
+    end
+    
   end
 end
