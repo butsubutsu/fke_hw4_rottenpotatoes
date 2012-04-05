@@ -8,8 +8,14 @@ end
 Then /^the director of (.*) should be (.*)$/ do |film_name,film_director|
   #page.all.
   #<ul id='details'>
-  p page.body
+  #p page.body
   assert page.has_content?(film_name.tr('"','')),"a:"+film_name 
   #not good enough: does not fail if expected film_director is a prefix of actual film_director
   assert page.has_content?('Director: '+film_director.tr('"','')),"b "+film_director
 end
+Given /^(?:|I )am on (.+)$/ do |page_name|
+  visit path_to(page_name)
+end
+#Given /I am on the details page for (.*)/ do |film_name|
+  
+#end

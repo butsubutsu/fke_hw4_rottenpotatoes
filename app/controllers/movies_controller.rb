@@ -57,8 +57,9 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
+  
   def same_director
     #AS2012/04/05: rspec fails if .to_i is omitted..   
-    @movie= Movie.same_director(params[:id].to_i)
+    @movies= Movie.same_director(params[:id].to_i)
   end
 end
